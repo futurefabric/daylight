@@ -71,11 +71,16 @@ $( document ).ready(function() {
       var month_str = month_names[new Date(d).getMonth()];
       var year = new Date(d).getFullYear();
 
-      //var output = day + ' ' + month_str + ' ' + year + ' - ' + dawn_str + ' (dawn) - ' + sunrise_str + ' (sunrise) - ' + sunset_str + ' (sunset) - ' + dusk_str + ' (dusk)' ;
-      //var output = mins_at_start_of_day + ' - ' + dawn_mins + ' - ' + sunrise_mins + ' - ' + sunset_mins + ' - ' + dusk_mins + ' - ' + mins_in_a_day;
-      var output = mins_as_perc_of_day(mins_at_start_of_day) + ' - ' + mins_as_perc_of_day(dawn_mins) + ' - ' + mins_as_perc_of_day(sunrise_mins) + ' - ' + mins_as_perc_of_day(sunset_mins) + ' - ' + mins_as_perc_of_day(dusk_mins) + ' - ' + mins_as_perc_of_day(mins_in_a_day);
+      var output =
+
+      mins_as_perc_of_day(sunrise_mins) + ' - ' +
+      mins_as_perc_of_day(sunset_mins - sunrise_mins) + ' - ' +
+      mins_as_perc_of_day(mins_in_a_day);
 
       console.log(output);
-      add_HTML('p',output);
+
+      var inner_html = "<div class=\x22day\x22><div style=\x22display:block; height:1px; background-color:blue; margin-left:" + mins_as_perc_of_day(sunrise_mins) + "%; width:" + mins_as_perc_of_day(sunset_mins - sunrise_mins) + "%;\x22></div></div>";
+      add_HTML('div', inner_html);
+
     }
 });

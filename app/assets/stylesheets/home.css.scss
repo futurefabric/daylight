@@ -7,18 +7,13 @@ body {
   font-family: 'Avenir Medium', sans-serif;
   font-size:16px;
 }
-h1,h2 {
-  text-transform:uppercase;
-  font-size:20px;
+
+div {
+  max-width:365px;
 }
-table {
-  min-width:400px;
-  border-collapse:collapse;
-  border-top:1px solid #d5d5d5;
-}
-td {
-  padding:10px 0;
-  margin:0;
-  width:33.33333%;
-  align:left;
+.day {
+  display:block;
+  height:1px;
+  background-color:black;
+  width:100%;
 }
