@@ -45,13 +45,14 @@ function mins_as_perc_of_day(mins) {
 
 
 
-
 // let's go
 // --------
 $( document ).ready(function() {
 
     console.log('Location: ' + latitude + ', ' + longitude);
     console.log('---------------------');
+
+    add_HTML('h1', latitude + ', ' + longitude);
 
     for (var d = start_date; d <= end_date; d.setDate(d.getDate() + 1)) {
       var times = SunCalc.getTimes(new Date(d), latitude, longitude);
@@ -77,7 +78,7 @@ $( document ).ready(function() {
       mins_as_perc_of_day(sunset_mins - sunrise_mins) + ' - ' +
       mins_as_perc_of_day(mins_in_a_day);
 
-      console.log(output);
+      //console.log(output);
 
       var inner_html = "<div class=\x22day\x22><div style=\x22display:block; height:1px; background-color:blue; margin-left:" + mins_as_perc_of_day(sunrise_mins) + "%; width:" + mins_as_perc_of_day(sunset_mins - sunrise_mins) + "%;\x22></div></div>";
       add_HTML('div', inner_html);
