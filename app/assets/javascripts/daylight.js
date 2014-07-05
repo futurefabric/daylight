@@ -7,8 +7,14 @@ var start_date = new Date("Jan 1, 2014");
 var end_date   = new Date("Dec 31, 2014");
 var mins_in_a_day   = 1440;
 var mins_at_start_of_day = 0;
-var latitude   = 51.3923;
-var longitude  = -0.3000;
+
+// London
+var latitude   = 51.5072;
+var longitude  = -0.1275;
+
+// Sydney
+// var latitude   = -33.8600;
+// var longitude  = 151.2094;
 
 
 // helper functions
@@ -74,11 +80,12 @@ $( document ).ready(function() {
 
       var output =
 
-      mins_as_perc_of_day(sunrise_mins) + ' - ' +
-      mins_as_perc_of_day(sunset_mins - sunrise_mins) + ' - ' +
-      mins_as_perc_of_day(mins_in_a_day);
+      //mins_as_perc_of_day(sunrise_mins) + ' - ' +
+      //mins_as_perc_of_day(sunset_mins - sunrise_mins) + ' - ' +
+      //mins_as_perc_of_day(mins_in_a_day);
+      sunrise_str;
 
-      //console.log(output);
+      console.log(output);
 
       var inner_html = "<div class=\x22day\x22><div style=\x22display:block; height:1px; background-color:blue; margin-left:" + mins_as_perc_of_day(sunrise_mins) + "%; width:" + mins_as_perc_of_day(sunset_mins - sunrise_mins) + "%;\x22></div></div>";
       add_HTML('div', inner_html);
