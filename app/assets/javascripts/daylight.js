@@ -11,22 +11,23 @@ var mins_at_start_of_day = 0;
 // London
 // var latitude   = 51.5072;
 // var longitude  = -0.1275;
+// var moment_js_ref = "Europe/London";
 
 // Sydney
-var latitude   = -33.8600;
-var longitude  = 151.2094;
+var latitude       = -33.8600;
+var longitude      = 151.2094;
+var moment_js_ref  = "Australia/Sydney";
 
 // Berlin
 // var latitude   = 52.5167;
 // var longitude  = 13.3833;
+// var moment_js_ref  = "Europe/Berlin";
 
 // Stockholm
 // var latitude   = 59.3294;
 // var longitude  = 18.0686;
+// var moment_js_ref  = "Europe/Stockholm";
 
-// Delhi
-// var latitude   = 28.6100;
-// var longitude  = 77.2300;
 
 
 
