@@ -1,20 +1,33 @@
 
 // vars
 // ----
-var month_names_short = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-var month_names       = [ "January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December" ];
-var start_date = new Date("Jan 1, 2014");
-var end_date   = new Date("Dec 31, 2014");
-var mins_in_a_day   = 1440;
+var month_names_short    = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+var month_names          = [ "January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December" ];
+var start_date           = new Date("Jan 1, 2014");
+var end_date             = new Date("Dec 31, 2014");
+var mins_in_a_day        = 1440;
 var mins_at_start_of_day = 0;
 
 // London
-var latitude   = 51.5072;
-var longitude  = -0.1275;
+// var latitude   = 51.5072;
+// var longitude  = -0.1275;
 
 // Sydney
-// var latitude   = -33.8600;
-// var longitude  = 151.2094;
+var latitude   = -33.8600;
+var longitude  = 151.2094;
+
+// Berlin
+// var latitude   = 52.5167;
+// var longitude  = 13.3833;
+
+// Stockholm
+// var latitude   = 59.3294;
+// var longitude  = 18.0686;
+
+// Delhi
+// var latitude   = 28.6100;
+// var longitude  = 77.2300;
+
 
 
 // helper functions
@@ -61,12 +74,14 @@ $( document ).ready(function() {
     add_HTML('h1', latitude + ', ' + longitude);
 
     for (var d = start_date; d <= end_date; d.setDate(d.getDate() + 1)) {
+
       var times = SunCalc.getTimes(new Date(d), latitude, longitude);
 
       var dawn_str    = times.dawn.getHours()     + ':' + prepend_zero(times.dawn.getMinutes());
       var sunrise_str = times.sunrise.getHours()  + ':' + prepend_zero(times.sunrise.getMinutes());
       var sunset_str  = times.sunset.getHours()   + ':' + prepend_zero(times.sunset.getMinutes());
       var dusk_str    = times.dusk.getHours()     + ':' + prepend_zero(times.dusk.getMinutes());
+
 
       var dawn_mins = (times.dawn.getHours() * 60) + times.dawn.getMinutes();
       var sunrise_mins = (times.sunrise.getHours() * 60) + times.sunrise.getMinutes();
@@ -80,10 +95,12 @@ $( document ).ready(function() {
 
       var output =
 
-      //mins_as_perc_of_day(sunrise_mins) + ' - ' +
-      //mins_as_perc_of_day(sunset_mins - sunrise_mins) + ' - ' +
-      //mins_as_perc_of_day(mins_in_a_day);
-      sunrise_str;
+      day + '' + month_str + ' sunrise: ' + sunrise_str + " - " +
+      'sunset: ' + sunset_str;
+
+      // mins_as_perc_of_day(sunrise_mins) + ' - ' +
+      // mins_as_perc_of_day(sunset_mins - sunrise_mins) + ' - ' +
+      // mins_as_perc_of_day(mins_in_a_day);
 
       console.log(output);
 
