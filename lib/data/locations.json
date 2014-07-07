@@ -1,0 +1,22 @@
+{
+  "locations":
+  [
+    {
+      "title": "London",
+      "moment_locale": "Europe/London",
+      "location": {
+        "latitude": "51.5072",
+        "longitude": "0.1275"
+      }
+    },
+
+    {
+      "title": "Stockholm",
+      "moment_locale": "Europe/Stockholm",
+      "location": {
+        "latitude": "59.3294",
+        "longitude": "18.0686"
+      }
+    }
+  ]
+}

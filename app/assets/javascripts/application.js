@@ -13,4 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+
+//= require suncalc
+//= require moment
+//= require moment-timezone-with-data-2010-2020
+//= require daylight
