@@ -72,7 +72,7 @@ $( document ).ready(function() {
     console.log('Location: ' + latitude + ', ' + longitude);
     console.log('---------------------');
 
-    add_HTML('h1', latitude + ', ' + longitude);
+    add_HTML('h1', moment_js_ref + '<br />' + latitude + ', ' + longitude);
 
     for (var d = start_date; d <= end_date; d.setDate(d.getDate() + 1)) {
 
