@@ -21,13 +21,33 @@ var locations_data = {
       }
     },
     {
+      "title": "New York",
+      "ref":"new_york",
+      "moment_locale": "America/New York",
+      "timezone_offset":-5,
+      "location": {
+        "latitude": "40.7056",
+        "longitude": "-73.9780"
+      }
+    },
+    {
+      "title": "Tokyo",
+      "ref":"tokyo",
+      "moment_locale": "Japan/Tokyo",
+      "timezone_offset":8,
+      "location": {
+        "latitude": "35.6733",
+        "longitude": "139.7103"
+      }
+    },
+    {
       "title": "Sydney",
       "ref":"sydney",
       "moment_locale": "Australia/Sydney",
       "timezone_offset":11,
       "location": {
-        "latitude": "-33.8600",
-        "longitude": "151.2094"
+        "latitude": "-33.7969",
+        "longitude": "150.9224"
       }
     },
     {
@@ -36,8 +56,8 @@ var locations_data = {
       "moment_locale": "Europe/Stockholm",
       "timezone_offset":1,
       "location": {
-        "latitude": "59.3294",
-        "longitude": "18.0686"
+        "latitude": "59.3261",
+        "longitude": "17.9875"
       }
     }
     ,
@@ -47,43 +67,43 @@ var locations_data = {
       "moment_locale": "America/Anchorage",
       "timezone_offset":-9,
       "location": {
-        "latitude": "61.2167",
-        "longitude": "149.9000"
+        "latitude": "61.1088",
+        "longitude": "-149.3731"
+      }
+    }
+    ,
+    {
+      "title": "Wellington",
+      "ref":"wellington",
+      "moment_locale": "New Zealand/Wellington",
+      "timezone_offset":11,
+      "location": {
+        "latitude": "-41.2889",
+        "longitude": "174.7772"
+      }
+    },
+    {
+      "title": "Johannesburg",
+      "ref":"johannesburg",
+      "moment_locale": "South Africa/Johannesburg",
+      "timezone_offset":1,
+      "location": {
+        "latitude": "-26.2145",
+        "longitude": "27.9643"
+      }
+    },
+    {
+      "title": "Falkland Islands",
+      "ref":"falkland_islands",
+      "moment_locale": "Europe/Falkland Islands",
+      "timezone_offset":-4,
+      "location": {
+        "latitude": "-51.5356",
+        "longitude": "-58.9818"
       }
     }
   ]
 };
-
-// London
-// var latitude   = 51.5072;
-// var longitude  = -0.1275;
-// var moment_locale = "Europe/London";
-// var timezone_offset = 0;
-
-// Anchorage
-// var latitude   = 61.2167;
-// var longitude  = 149.9000;
-// var moment_locale = "America/Anchorage";
-// var timezone_offset = -9;
-
-// Sydney
-// var latitude       = -33.8600;
-// var longitude      = 151.2094;
-// var moment_locale  = "Australia/Sydney";
-// var timezone_offset = 11;
-
-// Berlin
-// var latitude   = 52.5167;
-// var longitude  = 13.3833;
-// var moment_locale  = "Europe/Berlin";
-// var timezone_offset = 1;
-
-// Stockholm
-// var latitude   = 59.3294;
-// var longitude  = 18.0686;
-// var moment_locale  = "Europe/Stockholm";
-// var timezone_offset = 1;
-
 
 
 
@@ -122,10 +142,20 @@ function mins_as_perc_of_day(mins) {
   return percentage;
 }
 
-function correct_offset_timezone_hours(hours) {
+function correct_offset_timezone_hours(hours, timezone_offset, type) {
+
+  if((hours + timezone_offset) <= 0) {
+    if(type == "sunset") {
+      hours = hours + timezone_offset + 24;
+    }
+  }else{
+    hours = hours + timezone_offset;
+  }
+
   if(hours > 24) {
     hours = hours - 24;
   }
+
   return hours;
 }
 
@@ -142,10 +172,14 @@ $( document ).ready(function() {
       var latitude         = locations_data.locations[i].location.latitude;
       var longitude        = locations_data.locations[i].location.longitude;
       var timezone_offset  = locations_data.locations[i].timezone_offset;
-      start_date[i] = new Date("Jan 01, 2014");
-      end_date[i]   = new Date("Dec 31, 2014");
+      start_date[i]        = new Date("Jan 01, 2014");
+      end_date[i]          = new Date("Dec 31, 2014");
+      var bst_start        = new Date("Mar 30, 2014");
+      var bst_end          = new Date("Oct 26, 2014");
 
-      $("#" + ref).append("<h1>" + name + ': ' + latitude + ', ' + longitude + "</h1>");
+      // add location containers and headings
+      $("<div id=\x22" + ref + "\x22 class=\x22location\x22></div>").appendTo('body');
+      $("#" + ref).append("<h1>" + name + "</h1>");
 
       console.log(name + ': ' + latitude + ', ' + longitude);
       console.log('==========================');
@@ -154,17 +188,30 @@ $( document ).ready(function() {
 
         var times = SunCalc.getTimes(new Date(d), latitude, longitude);
 
-        var sunrise_hours = correct_offset_timezone_hours(times.sunrise.getHours() + timezone_offset);
-        var sunset_hours = correct_offset_timezone_hours(times.sunset.getHours() + timezone_offset);
+        var sunrise_hours = correct_offset_timezone_hours(times.sunrise.getHours(), timezone_offset,'sunrise');
+        var sunset_hours = correct_offset_timezone_hours(times.sunset.getHours(), timezone_offset,'sunset');
+
+        var formatted_gmt_relative_sunrise_time  = times.sunrise.getHours() + ":" + prepend_zero(times.sunrise.getMinutes());
+        var formatted_offset_sunrise_time        = sunrise_hours + ":" + prepend_zero(times.sunrise.getMinutes());
+        var formatted_gmt_relative_sunset_time   = times.sunset.getHours() + ":" + prepend_zero(times.sunset.getMinutes());
+        var formatted_offset_sunset_time         = sunset_hours + ":" + prepend_zero(times.sunset.getMinutes());
+
+        if((d > bst_start) && (d <= bst_end)) {
+          sunrise_hours -= 1;
+          sunset_hours -= 1;
+        }
 
         var sunrise_time_in_mins   = (sunrise_hours * 60) + times.sunrise.getMinutes();
         var sunset_time_in_mins    = (sunset_hours * 60) + times.sunset.getMinutes();
 
-        console.log("☼ " + sunrise_hours + ":" + prepend_zero(times.sunrise.getMinutes()) + "    ☾ " + sunset_hours + ":" + prepend_zero(times.sunset.getMinutes()));
+        var left_margin_perc   = mins_as_perc_of_day(sunrise_time_in_mins);
+        var width_perc         = mins_as_perc_of_day(sunset_time_in_mins - sunrise_time_in_mins);
 
-        var html = "<div id=\x22" + d + "\x22 class=\x22day\x22><div style=\x22display:block; height:1px; background-color:blue; margin-left:" + mins_as_perc_of_day(sunrise_time_in_mins) + "%; width:" + mins_as_perc_of_day(sunset_time_in_mins - sunrise_time_in_mins) + "%;\x22></div></div>";
+        var html = "<div id=\x22" + d + "  ☼ " + formatted_offset_sunrise_time + " (" + formatted_gmt_relative_sunrise_time + ")    ☾ " + formatted_offset_sunset_time + " (" + formatted_gmt_relative_sunset_time + ")" + "\x22 class=\x22day\x22><div style=\x22display:block; height:1px; background-color:blue; margin-left:" + left_margin_perc + "%; width:" + width_perc + "%;\x22></div></div>";
 
         $("#" + ref).append(html);
+
+        console.log("☼ " + formatted_offset_sunrise_time + " (" + formatted_gmt_relative_sunrise_time + ")    ☾ " + formatted_offset_sunset_time + " (" + formatted_gmt_relative_sunset_time + ")");
       }
 
       console.log('==========================');

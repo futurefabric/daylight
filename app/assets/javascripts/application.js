@@ -15,6 +15,4 @@
 //= require turbolinks
 
 //= require suncalc
-//= require moment
-//= require moment-timezone-with-data-2010-2020
 //= require daylight
