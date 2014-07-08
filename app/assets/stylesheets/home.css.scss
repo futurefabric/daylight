@@ -30,7 +30,7 @@ div {
   display:block;
   float:left;
   margin-right:40px;
-  margin-bottom:40px;
+  margin-bottom:60px;
   min-width:365px;
 
   h1 {
@@ -45,18 +45,18 @@ div {
   display:block;
   height:1px;
   //margin-bottom:1px;
-  background-color:#eaeaea;
+  background-color:#222;
   width:100%;
 }
 
 .today {
   display:block;
   height:1px;
-  background-color:red;
+  background-color:#222; //red;
 }
 
 .daylight {
   display:block;
   height:1px;
-  background-color:#212121;
+  background-color:#07D1FF; //#212121;
 }

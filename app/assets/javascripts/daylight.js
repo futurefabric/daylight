@@ -200,11 +200,13 @@ $( document ).ready(function() {
         var formatted_gmt_relative_sunset_time   = times.sunset.getHours() + ":" + prepend_zero(times.sunset.getMinutes());
         var formatted_offset_sunset_time         = sunset_hours + ":" + prepend_zero(times.sunset.getMinutes());
 
-        
+
         if((d > bst_start) && (d <= bst_end)) {
           //sunrise_hours -= 1;
           //sunset_hours -= 1;
         }
+
+
 
         var sunrise_time_in_mins   = (sunrise_hours * 60) + times.sunrise.getMinutes();
         var sunset_time_in_mins    = (sunset_hours * 60) + times.sunset.getMinutes();
