@@ -7,13 +7,18 @@ body {
   margin:30px;
   font-family: 'Soleil', 'Helvetica Neue', sans-serif;
   font-size:16px;
+  color:#212121;
 }
 
 h1 {
-  font-size:28px;
-  font-weight:300;
+  font-size:46px;
+  font-weight:600;
   line-height:1.35;
-  margin:0; padding:0;
+  margin:0 0 45px -2px; padding:0;
+}
+
+p {
+  margin:0;
   margin-bottom:8px;
 }
 
@@ -27,11 +32,31 @@ div {
   margin-right:40px;
   margin-bottom:40px;
   min-width:365px;
+
+  h1 {
+    font-size:22px;
+    font-weight:300;
+    line-height:1.35;
+    margin:0; padding:0;
+  }
 }
 
 .day {
   display:block;
   height:1px;
-  background-color:black;
+  //margin-bottom:1px;
+  background-color:#eaeaea;
   width:100%;
+}
+
+.today {
+  display:block;
+  height:1px;
+  background-color:red;
+}
+
+.daylight {
+  display:block;
+  height:1px;
+  background-color:#212121;
 }

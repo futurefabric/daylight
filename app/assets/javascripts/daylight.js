@@ -6,6 +6,9 @@ var month_names          = [ "January", "February", "March", "April", "May", "Ju
 var start_date           = [];
 var end_date             = [];
 var mins_in_a_day        = 1440;
+var today                = new Date();
+var todays_date          = today.getDate();
+var todays_month         = today.getMonth();
 
 var locations_data = {
   "locations":
@@ -180,6 +183,7 @@ $( document ).ready(function() {
       // add location containers and headings
       $("<div id=\x22" + ref + "\x22 class=\x22location\x22></div>").appendTo('body');
       $("#" + ref).append("<h1>" + name + "</h1>");
+      $("#" + ref).append("<p>" + latitude + ", " + longitude + ", (" + timezone_offset + " GMT)</p>");
 
       console.log(name + ': ' + latitude + ', ' + longitude);
       console.log('==========================');
@@ -196,9 +200,10 @@ $( document ).ready(function() {
         var formatted_gmt_relative_sunset_time   = times.sunset.getHours() + ":" + prepend_zero(times.sunset.getMinutes());
         var formatted_offset_sunset_time         = sunset_hours + ":" + prepend_zero(times.sunset.getMinutes());
 
+        
         if((d > bst_start) && (d <= bst_end)) {
-          sunrise_hours -= 1;
-          sunset_hours -= 1;
+          //sunrise_hours -= 1;
+          //sunset_hours -= 1;
         }
 
         var sunrise_time_in_mins   = (sunrise_hours * 60) + times.sunrise.getMinutes();
@@ -207,7 +212,18 @@ $( document ).ready(function() {
         var left_margin_perc   = mins_as_perc_of_day(sunrise_time_in_mins);
         var width_perc         = mins_as_perc_of_day(sunset_time_in_mins - sunrise_time_in_mins);
 
-        var html = "<div id=\x22" + d + "  ☼ " + formatted_offset_sunrise_time + " (" + formatted_gmt_relative_sunrise_time + ")    ☾ " + formatted_offset_sunset_time + " (" + formatted_gmt_relative_sunset_time + ")" + "\x22 class=\x22day\x22><div style=\x22display:block; height:1px; background-color:blue; margin-left:" + left_margin_perc + "%; width:" + width_perc + "%;\x22></div></div>";
+
+
+        if((d.getDate() == todays_date) && (d.getMonth() == todays_month)) {
+          var day_class = "today";
+        }else{
+          var day_class = "daylight";
+        }
+
+        var html = "<div id=\x22" + d + "  ☼ " + formatted_offset_sunrise_time + " (" + formatted_gmt_relative_sunrise_time + ")    ☾ "
+        + formatted_offset_sunset_time + " (" + formatted_gmt_relative_sunset_time + ")"
+        + "\x22 class=\x22day\x22><div class=\x22" + day_class + "\x22 style=\x22margin-left:"
+        + left_margin_perc + "%; width:" + width_perc + "%;\x22></div></div>";
 
         $("#" + ref).append(html);
 
