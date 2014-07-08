@@ -14,7 +14,8 @@ var locations_data = {
   "locations":
   [
     {
-      "title": "London",
+      "city": "London",
+      "country": "England",
       "ref":"london",
       "moment_locale": "Europe/London",
       "timezone_offset":0,
@@ -24,7 +25,8 @@ var locations_data = {
       }
     },
     {
-      "title": "New York",
+      "city": "New York",
+      "country": "USA",
       "ref":"new_york",
       "moment_locale": "America/New York",
       "timezone_offset":-5,
@@ -34,7 +36,19 @@ var locations_data = {
       }
     },
     {
-      "title": "Tokyo",
+      "city": "San Francisco",
+      "country": "USA",
+      "ref":"san_francisco",
+      "moment_locale": "America/San Francisco",
+      "timezone_offset":-8,
+      "location": {
+        "latitude": "37.7577",
+        "longitude": "-122.4376"
+      }
+    },
+    {
+      "city": "Tokyo",
+      "country": "Japan",
       "ref":"tokyo",
       "moment_locale": "Japan/Tokyo",
       "timezone_offset":8,
@@ -44,7 +58,8 @@ var locations_data = {
       }
     },
     {
-      "title": "Sydney",
+      "city": "Sydney",
+      "country": "Australia",
       "ref":"sydney",
       "moment_locale": "Australia/Sydney",
       "timezone_offset":11,
@@ -54,7 +69,8 @@ var locations_data = {
       }
     },
     {
-      "title": "Stockholm",
+      "city": "Stockholm",
+      "country": "Sweden",
       "ref":"stockholm",
       "moment_locale": "Europe/Stockholm",
       "timezone_offset":1,
@@ -65,7 +81,8 @@ var locations_data = {
     }
     ,
     {
-      "title": "Anchorage",
+      "city": "Anchorage",
+      "country": "USA",
       "ref":"anchorage",
       "moment_locale": "America/Anchorage",
       "timezone_offset":-9,
@@ -76,7 +93,8 @@ var locations_data = {
     }
     ,
     {
-      "title": "Wellington",
+      "city": "Wellington",
+      "country": "New Zealand",
       "ref":"wellington",
       "moment_locale": "New Zealand/Wellington",
       "timezone_offset":11,
@@ -86,7 +104,8 @@ var locations_data = {
       }
     },
     {
-      "title": "Johannesburg",
+      "city": "Johannesburg",
+      "country": "South Africa",
       "ref":"johannesburg",
       "moment_locale": "South Africa/Johannesburg",
       "timezone_offset":1,
@@ -96,7 +115,8 @@ var locations_data = {
       }
     },
     {
-      "title": "Falkland Islands",
+      "city": "Falkland Islands",
+      "country": "-",
       "ref":"falkland_islands",
       "moment_locale": "Europe/Falkland Islands",
       "timezone_offset":-4,
@@ -170,7 +190,8 @@ $( document ).ready(function() {
 
     for(var i = 0; i < locations_data.locations.length; i++) {
 
-      var name             = locations_data.locations[i].title;
+      var city             = locations_data.locations[i].city;
+      var country             = locations_data.locations[i].country;
       var ref              = locations_data.locations[i].ref;
       var latitude         = locations_data.locations[i].location.latitude;
       var longitude        = locations_data.locations[i].location.longitude;
@@ -182,10 +203,10 @@ $( document ).ready(function() {
 
       // add location containers and headings
       $("<div id=\x22" + ref + "\x22 class=\x22location\x22></div>").appendTo('body');
-      $("#" + ref).append("<h1>" + name + "</h1>");
-      $("#" + ref).append("<p>" + latitude + ", " + longitude + ", (" + timezone_offset + " GMT)</p>");
+      $("#" + ref).append("<h1>" + city + "</h1>");
+      $("#" + ref).append("<p>" + country + "<br />" + latitude + ", " + longitude + ", (" + timezone_offset + " GMT)</p>");
 
-      console.log(name + ': ' + latitude + ', ' + longitude);
+      console.log(city + ': ' + latitude + ', ' + longitude);
       console.log('==========================');
 
       for (var d = start_date[i]; d <= end_date[i]; d.setDate(d.getDate() + 1)) {
