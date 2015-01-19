@@ -113,18 +113,19 @@ var locations_data = {
         "latitude": "-26.2145",
         "longitude": "27.9643"
       }
-    },
-    {
-      "city": "Falkland Islands",
-      "country": "-",
-      "ref":"falkland_islands",
-      "moment_locale": "Europe/Falkland Islands",
-      "timezone_offset":-4,
-      "location": {
-        "latitude": "-51.5356",
-        "longitude": "-58.9818"
-      }
     }
+    // ,
+    // {
+    //   "city": "Falkland Islands",
+    //   "country": "-",
+    //   "ref":"falkland_islands",
+    //   "moment_locale": "Europe/Falkland Islands",
+    //   "timezone_offset":-4,
+    //   "location": {
+    //     "latitude": "-51.5356",
+    //     "longitude": "-58.9818"
+    //   }
+    // }
   ]
 };
 

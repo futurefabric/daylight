@@ -5,14 +5,16 @@
 
 body {
   margin:30px;
-  font-family: 'Soleil', 'Helvetica Neue', sans-serif;
+  font-family: "aktiv-grotesk-std", 'Helvetica Neue', sans-serif;
+  font-weight:normal;
   font-size:16px;
   color:#212121;
 }
 
 h1 {
   font-size:46px;
-  font-weight:600;
+  font-family: "aktiv-grotesk-std", 'Helvetica Neue', sans-serif;
+  font-weight:normal;
   line-height:1.35;
   margin:0 0 45px -2px; padding:0;
 }
@@ -24,7 +26,7 @@ p {
 }
 
 div {
-  max-width:300px;
+  max-width:365px;
 }
 
 .location {
@@ -32,11 +34,10 @@ div {
   float:left;
   margin-right:40px;
   margin-bottom:60px;
-  min-width:300px;
+  min-width:365px;
 
   h1 {
     font-size:22px;
-    font-weight:300;
     line-height:1.35;
     margin:0; padding:0;
   }
@@ -44,7 +45,7 @@ div {
 
 .day {
   display:block;
-  height:0.8219px;
+  height:1px;
   //margin-bottom:1px;
   background-color:#222;
   width:100%;
@@ -52,12 +53,12 @@ div {
 
 .today {
   display:block;
-  height:0.8219px;
+  height:1px;
   background-color:#222; //red;
 }
 
 .daylight {
   display:block;
-  height:0.8219px;
+  height:1px;
   background-color:#07D1FF; //#212121;
 }
